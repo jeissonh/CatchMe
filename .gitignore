@@ -19,3 +19,11 @@
 *.exe
 *.out
 *.app
+
+# Cocos2d-x
+/cocos2d
+build/
+project.xcworkspace/
+xcuserdata/
+obj/
+
