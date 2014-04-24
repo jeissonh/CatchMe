@@ -27,3 +27,6 @@ project.xcworkspace/
 xcuserdata/
 obj/
 
+# QtCreator
+*.user
+
