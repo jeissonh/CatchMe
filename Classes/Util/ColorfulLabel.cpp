@@ -8,7 +8,7 @@ ColorfulLabel::ColorfulLabel()
 	, _blue(255)
 {
 	// Esto seria una asignacion, no inicializacion
-	//_blue = _green =_red = 255;
+	//_blue = _green =_mred = 255;
 }
 
 ColorfulLabel* ColorfulLabel::create(const std::string& string, const std::string& fontName, float fontSize,
@@ -27,9 +27,29 @@ ColorfulLabel* ColorfulLabel::create(const std::string& string, const std::strin
 
 void ColorfulLabel::nextColor()
 {
-	if ( rand() % 2 ) --_red;
-	if ( rand() % 2 ) --_blue;
-	if ( rand() % 2 ) --_green;
+	if ( _increasing )
+	{
+		if ( _blue < 255 )
+			++_blue;
+		else if ( _green < 255 )
+			++_green;
+		else if ( _red < 255 )
+			++_red;
+		else
+			_increasing = false;
+	}
+	else
+	{
+		if ( _red > 128 )
+			--_red;
+		else if ( _blue > 128 )
+			--_blue;
+		else if ( _green > 128 )
+			--_green;
+		else
+			_increasing = true;
+	}
+
 	setColor( Color3B(_red, _green, _blue) );
 }
 
