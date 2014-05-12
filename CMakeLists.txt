@@ -43,6 +43,7 @@ set(GAME_SRC
   proj.linux/main.cpp
   Classes/AppDelegate.cpp
   Classes/HelloWorldScene.cpp
+  Classes/Util/ColorfulLabel.cpp
 )
 
 set(COCOS2D_ROOT ${CMAKE_SOURCE_DIR}/cocos2d)
@@ -76,6 +77,8 @@ include_directories(
   ${COCOS2D_ROOT}/external/spidermonkey/include/linux
   ${COCOS2D_ROOT}/external/linux-specific/fmod/include/${ARCH_DIR}
   ${COCOS2D_ROOT}/external/xxhash
+  Classes
+  Classes/Util
 )
 
 link_directories(
