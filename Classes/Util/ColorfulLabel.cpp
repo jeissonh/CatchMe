@@ -107,5 +107,5 @@ void ColorfulLabel::setEventHandlers()
 void ColorfulLabel::changeScene()
 {
 	auto scene = ChainReactionScene::createScene();
-	Director::getInstance()->replaceScene(TransitionCrossFade::create(0.75f, scene));
+	Director::getInstance()->replaceScene(scene);//TransitionCrossFade::create(0.75f, scene));
 }

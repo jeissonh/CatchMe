@@ -2,10 +2,21 @@
 #define ChainReactionScene_h
 
 #include "cocos2d.h"
+#include <vector>
+
+// Forward declarations
+class Ball;
 
 class ChainReactionScene : public cocos2d::Layer
 {
   protected:
+	/// Los 7 frames para crear bolas
+	std::vector<cocos2d::SpriteFrame*> _ballFrames;
+
+	/// Las n bolas en la pantalla que ve el jugador
+	std::vector<Ball*> _ballClones;
+
+	cocos2d::Sprite* explosion = nullptr;
 
   public:
 	// there's no 'id' in cpp, so we recommend returning the class instance pointer
@@ -24,7 +35,10 @@ class ChainReactionScene : public cocos2d::Layer
 	void update(float df);
 
   protected:
+	void loadBalls();
 	void setEventHandlers();
+	void addRandomBall();
+	bool placeExplosion(cocos2d::Touch* touch, cocos2d::Event *event);
 };
 
 #endif // ChainReactionScene_h

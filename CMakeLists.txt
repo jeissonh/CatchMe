@@ -42,8 +42,9 @@ endif()
 set(GAME_SRC
   proj.linux/main.cpp
   Classes/AppDelegate.cpp
-  Classes/HelloWorldScene.cpp
+  Classes/Ball.cpp
   Classes/ChainReactionScene.cpp
+  Classes/HelloWorldScene.cpp
   Classes/Util/ColorfulLabel.cpp
 )
 
