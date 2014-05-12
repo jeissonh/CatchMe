@@ -43,6 +43,7 @@ set(GAME_SRC
   proj.linux/main.cpp
   Classes/AppDelegate.cpp
   Classes/HelloWorldScene.cpp
+  Classes/ChainReactionScene.cpp
   Classes/Util/ColorfulLabel.cpp
 )
 
@@ -168,7 +169,7 @@ target_link_libraries(${APP_NAME}
 set(APP_BIN_DIR "${CMAKE_BINARY_DIR}/bin")
 
 set_target_properties(${APP_NAME} PROPERTIES
-     RUNTIME_OUTPUT_DIRECTORY  "${APP_BIN_DIR}")
+	 RUNTIME_OUTPUT_DIRECTORY  "${APP_BIN_DIR}")
 
 pre_build(${APP_NAME}
   COMMAND ${CMAKE_COMMAND} -E remove_directory ${APP_BIN_DIR}/Resources

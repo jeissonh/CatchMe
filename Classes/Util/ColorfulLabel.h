@@ -22,6 +22,7 @@ class ColorfulLabel : public cocos2d::LabelTTF
 	void nextColor();
 	/// ToDo: comments
 	void setEventHandlers();
+	void changeScene();
 };
 
 #endif // COLORFULLABEL_H
