@@ -60,15 +60,15 @@ bool ChainReactionScene::init()
 	for ( size_t i = 0; i < 13; ++i )
 		addRandomBall();
 
-/*	labelGameTitle = ColorfulLabel::create("CatchMe", "Fonts/NextGames.ttf", 72);
+	remainingTimeLabel = ColorfulLabel::create("CatchMe", "Fonts/NextGames.ttf", 24);
 
 	// position the label on the center of the screen
-	labelGameTitle->setPosition(Point(origin.x + visibleSize.width/2,
-							origin.y + visibleSize.height - labelGameTitle->getContentSize().height));
+	remainingTimeLabel->setPosition(Point(origin.x + visibleSize.width/2,
+							origin.y + visibleSize.height - remainingTimeLabel->getContentSize().height));
 
 	// add the label as a child to this layer
-	this->addChild(labelGameTitle, 1);
-*/
+	this->addChild(remainingTimeLabel, 1);
+
 #if 0
 	// add "ChainReactionScene" splash screen"
 	auto sprite = Sprite::create("ChainReactionScene.png");
@@ -81,6 +81,7 @@ bool ChainReactionScene::init()
 #endif
 
 	schedule( schedule_selector(ChainReactionScene::update) );
+	schedule( schedule_selector(ChainReactionScene::updateTimer), 1.0f);
 	setEventHandlers();
 
 	return true;
@@ -107,11 +108,27 @@ void ChainReactionScene::update(float df)
 		_ballClones[i]->update(df);
 		if ( explosion && Util::collides(explosion, _ballClones[i] ) )
 		{
+			ParticleSystemQuad* particleSystem = ParticleExplosion::create();
+			this->addChild(particleSystem, 10);
+			particleSystem->setTexture( Director::getInstance()->getTextureCache()->addImage("Stars2.png") );
+			particleSystem->setAutoRemoveOnFinish(true);
+			particleSystem->setPosition( _ballClones[i]->getPosition() );
+			particleSystem->setDuration(1.0f);
+
 			log("Removing child %zi" , i + 1);
 			removeChild(_ballClones[i]);
 			_ballClones.erase( _ballClones.begin() + i );
 		}
 	}
+}
+
+void ChainReactionScene::updateTimer(float df)
+{
+	remainingTime -= 1.0f;
+	char buffer[32];
+	sprintf(buffer, "%.0f", remainingTime );
+
+	remainingTimeLabel->setString(buffer);
 }
 
 void ChainReactionScene::loadBalls()

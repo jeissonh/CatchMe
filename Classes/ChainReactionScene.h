@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include <vector>
+#include "Util/ColorfulLabel.h"
 
 // Forward declarations
 class Ball;
@@ -17,6 +18,9 @@ class ChainReactionScene : public cocos2d::Layer
 	std::vector<Ball*> _ballClones;
 
 	cocos2d::Sprite* explosion = nullptr;
+
+	ColorfulLabel* remainingTimeLabel = nullptr;
+	float remainingTime = 60.0f;
 
   public:
 	// there's no 'id' in cpp, so we recommend returning the class instance pointer
@@ -33,6 +37,7 @@ class ChainReactionScene : public cocos2d::Layer
 
 	/// Se invoca 60 veces por segundo, cada vez que se actualiza la pantalla
 	void update(float df);
+	void updateTimer(float df);
 
   protected:
 	void loadBalls();
