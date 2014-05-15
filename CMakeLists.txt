@@ -46,6 +46,7 @@ set(GAME_SRC
   Classes/ChainReactionScene.cpp
   Classes/HelloWorldScene.cpp
   Classes/Util/ColorfulLabel.cpp
+  Classes/Util/Util.cpp
 )
 
 set(COCOS2D_ROOT ${CMAKE_SOURCE_DIR}/cocos2d)

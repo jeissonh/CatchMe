@@ -1,5 +1,6 @@
 #include "ChainReactionScene.h"
 #include "Ball.h"
+#include "Util/Util.h"
 
 USING_NS_CC;
 
@@ -104,19 +105,11 @@ void ChainReactionScene::update(float df)
 	for ( size_t i = 0; i < _ballClones.size(); ++i)
 	{
 		_ballClones[i]->update(df);
-		if ( explosion )
+		if ( explosion && Util::collides(explosion, _ballClones[i] ) )
 		{
-			float r1 = explosion->getBoundingBox().size.width * 0.5f;
-			float r2 = _ballClones[i]->getRadius();
-			float dx = explosion->getPositionX() - _ballClones[i]->getPositionX();
-			float dy = explosion->getPositionY() - _ballClones[i]->getPositionY();
-			float d2 = dx * dx + dy * dy;
-			if ( d2 <= (r1 + r2) * (r1 + r2) )
-			{
-				log("Removing child %zi" , i + 1);
-				removeChild(_ballClones[i]);
-				_ballClones.erase( _ballClones.begin() + i );
-			}
+			log("Removing child %zi" , i + 1);
+			removeChild(_ballClones[i]);
+			_ballClones.erase( _ballClones.begin() + i );
 		}
 	}
 }
