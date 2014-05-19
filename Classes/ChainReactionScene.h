@@ -7,6 +7,7 @@
 
 // Forward declarations
 class Ball;
+class Scores;
 
 class ChainReactionScene : public cocos2d::Layer
 {
@@ -21,6 +22,9 @@ class ChainReactionScene : public cocos2d::Layer
 
 	ColorfulLabel* remainingTimeLabel = nullptr;
 	float remainingTime = 60.0f;
+
+	Scores* scores = nullptr;
+	size_t explosionCount = 0;
 
   public:
 	// there's no 'id' in cpp, so we recommend returning the class instance pointer

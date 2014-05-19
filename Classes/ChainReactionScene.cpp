@@ -1,5 +1,6 @@
 #include "ChainReactionScene.h"
 #include "Ball.h"
+#include "Util/Scores.h"
 #include "Util/Util.h"
 
 USING_NS_CC;
@@ -50,6 +51,8 @@ bool ChainReactionScene::init()
 	menu->setPosition(Point::ZERO);
 	this->addChild(menu, 1);
 
+
+
 	/////////////////////////////
 	// 3. add your codes below...
 
@@ -68,6 +71,11 @@ bool ChainReactionScene::init()
 
 	// add the label as a child to this layer
 	this->addChild(remainingTimeLabel, 1);
+
+	scores = Scores::create("0000", "Fonts/NextGames.ttf", 24);
+	scores->setPosition(Point(origin.x + visibleSize.width - scores->getContentSize().width,
+							origin.y + visibleSize.height - scores->getContentSize().height));
+	addChild(scores, 1);
 
 #if 0
 	// add "ChainReactionScene" splash screen"
@@ -108,12 +116,16 @@ void ChainReactionScene::update(float df)
 		_ballClones[i]->update(df);
 		if ( explosion && Util::collides(explosion, _ballClones[i] ) )
 		{
+			++explosionCount;
 			ParticleSystemQuad* particleSystem = ParticleExplosion::create();
 			this->addChild(particleSystem, 10);
 			particleSystem->setTexture( Director::getInstance()->getTextureCache()->addImage("Stars2.png") );
 			particleSystem->setAutoRemoveOnFinish(true);
 			particleSystem->setPosition( _ballClones[i]->getPosition() );
 			particleSystem->setDuration(1.0f);
+
+			// Update the score
+			scores->addPoints(explosionCount);
 
 			log("Removing child %zi" , i + 1);
 			removeChild(_ballClones[i]);
