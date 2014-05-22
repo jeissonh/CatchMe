@@ -29,7 +29,8 @@ public:
 	void animateGameTitle();
 
   protected:
-    void setEventHandlers();
+	void setEventHandlers();
+	void showHighScores();
 };
 
 #endif // __HELLOWORLD_SCENE_H__

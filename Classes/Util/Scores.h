@@ -17,13 +17,16 @@ class Scores : public cocos2d::LabelTTF
 		std::string nickname;
 		PointType points = 0;
 		int level = 0;
+	  public:
+		ScoreInfo(std::string nickname = "", PointType points = 0ll, int level = 0);
 	};
 
   protected:
 	std::vector<ScoreInfo> scores;
 	ScoreInfo currentPlayer;
 
-  public:
+	void loadHighScores();
+public:
 	Scores();
 
 	static Scores * create(const std::string& string, const std::string& fontName, float fontSize,
@@ -34,6 +37,8 @@ class Scores : public cocos2d::LabelTTF
 	/// @param points the amount to be acredited to the player,
 	/// send a negative number if player loses that points
 	void addPoints(PointType points);
+	void showScore();
+	void showHighScores();
 };
 
 #endif // SCORES_H

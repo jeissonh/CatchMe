@@ -1,4 +1,5 @@
 #include "HelloWorldScene.h"
+#include "Scores.h"
 
 USING_NS_CC;
 
@@ -76,9 +77,8 @@ bool HelloWorld::init()
 
 	schedule( schedule_selector(HelloWorld::update) );
 	animateGameTitle();
-
-
 	setEventHandlers();
+	showHighScores();
 
 	return true;
 }
@@ -101,6 +101,15 @@ void HelloWorld::setEventHandlers()
 void HelloWorld::update(float df)
 {
 	labelGameTitle->nextColor();
+}
+
+void HelloWorld::showHighScores()
+{
+	Scores* scores = Scores::create("", "Fonts/Gameboy.ttf", 24);
+	float screenWidth = Director::sharedDirector()->getWinSize().width;
+	scores->setPosition( screenWidth * 0.5f, 250.0f );
+	scores->showHighScores();
+	addChild(scores, -1);
 }
 
 
