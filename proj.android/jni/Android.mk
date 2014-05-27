@@ -10,11 +10,12 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
                    ../../Classes/Ball.cpp \
                    ../../Classes/ChainReactionScene.cpp \
-                   ../../Classes/Util/Util.cpp \
+                   ../../Classes/HelloWorldScene.cpp \
                    ../../Classes/Util/ColorfulLabel.cpp \
-                   ../../Classes/HelloWorldScene.cpp
+                   ../../Classes/Util/Scores.cpp \
+                   ../../Classes/Util/Util.cpp
 
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes $(LOCAL_PATH)/../../Classes/Util
 
 LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static

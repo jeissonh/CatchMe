@@ -30,3 +30,11 @@ obj/
 # QtCreator
 *.user
 
+# Android
+/proj.android/libs/
+/proj.android/assets/
+/proj.android/local.properties
+/bin/
+/proj.android/bin/
+/proj.android/gen/
+
